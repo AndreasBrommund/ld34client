@@ -4,7 +4,13 @@ package se.dixum;
  * Created by david on 15-12-12.
  */
 public class Position {
-    float x;
+    private float x;
+    private float y;
+
+    public Position(float x, float y){
+        this.x = x;
+        this.y = y;
+    }
 
     public float getX() {
         return x;
@@ -19,13 +25,6 @@ public class Position {
     }
 
     public void setY(float y) {
-        this.y = y;
-    }
-
-    float y;
-
-    public Position(float x, float y){
-        this.x = x;
         this.y = y;
     }
 

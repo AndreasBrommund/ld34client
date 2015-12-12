@@ -7,14 +7,19 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import se.dixum.connection.SocketConnection;
 
 public class Game extends ApplicationAdapter {
-    ShapeRenderer shapeRenderer;
-    SocketConnection connection;
-    Player player;
+
+    private ShapeRenderer shapeRenderer;
+    private SocketConnection connection;
+    private Player player;
+
 	@Override
 	public void create () {
         shapeRenderer = new ShapeRenderer();
+        connection = new SocketConnection("192.168.1.31",7978);
+
+        //Inti here
         player = new Player(0,0);
-        connection = new SocketConnection("127.0.0.1",7978);
+
 	}
 
     private void clearScreen() {
@@ -34,7 +39,7 @@ public class Game extends ApplicationAdapter {
     }
 
     public void update(){
-
+        player.update();
         connection.update();
     }
 }
