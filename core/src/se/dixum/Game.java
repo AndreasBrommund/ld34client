@@ -21,13 +21,13 @@ public class Game extends ApplicationAdapter {
         connection = new SocketConnection("h104n37-far-a13.ias.bredband.telia.com",7978);
 
         //Inti here
-        player = new Player(0,0);
+        player = new Player(100,100);
 
 
 	}
 
     private void clearScreen() {
-        Gdx.gl.glClearColor(0, 0, 0, 1);
+        Gdx.gl.glClearColor(1, 1, 1, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
     }
 
@@ -55,7 +55,7 @@ public class Game extends ApplicationAdapter {
         }catch(IOException e){
             System.err.println("IO err: "+e.getMessage());
         }
-        
+
         player.updateFromServer(positionProtocol);
     }
 }

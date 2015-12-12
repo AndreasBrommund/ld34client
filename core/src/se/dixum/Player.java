@@ -9,12 +9,16 @@ import se.dixum.protocol.PositionProtocol;
  */
 public class Player {
 
-    private int base = 30;
+    private float base = 60;
+    private float height;
+
     private Position pos;
     private float angle;
 
     public Player(float x, float y) {
         this.pos = new Position(x, y);
+        height = (float)(Math.sqrt(Math.pow(base,2)-Math.pow(base/2,2)));
+        System.out.println(height);
     }
 
     public void update(){
@@ -27,19 +31,20 @@ public class Player {
     }
 
     public void draw(ShapeRenderer shapeRenderer) {
-        shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
+        shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
         shapeRenderer.identity();
-        shapeRenderer.setColor(1, 1, 1, 1);
+        shapeRenderer.setColor(0, 0, 0, 1);
 
         System.out.println("X = "+pos.getX()+ " Y = "+ pos.getY());
-        float x0 = pos.getX();
-        float y0 = pos.getY();
-        float x1 = pos.getX()+base/2;
-        float y1 = pos.getY()+(float)(Math.sqrt(Math.pow(base,2)-Math.pow(base/2,2)));
-        float x2 = pos.getX()+base;
-        float y2 = pos.getY();
-
+        float x0 = pos.getX()-base*.5f;
+        float y0 = pos.getY()-height*.5f;
+        float x1 = pos.getX();
+        float y1 = pos.getY()+height*.5f;
+        float x2 = pos.getX()+base*.5f;
+        float y2 = pos.getY()-height*.5f;
         shapeRenderer.triangle(x0,y0,x1,y1,x2,y2);
+        shapeRenderer.setColor(1,0,0,1);
+        shapeRenderer.point(pos.getX(), pos.getY(), 0);
         shapeRenderer.end();
     }
 

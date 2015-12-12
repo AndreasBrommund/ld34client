@@ -27,7 +27,6 @@ public class SocketConnection {
         }
     }
 
-
     public void sendSocket(String content) throws IOException {
         socket.getOutputStream().write(content.getBytes());
     }
