@@ -13,20 +13,28 @@ public class Game extends ApplicationAdapter {
 	@Override
 	public void create () {
         shapeRenderer = new ShapeRenderer();
-        connection = new SocketConnection("192.168.1.31",7978);
+        connection = new SocketConnection("127.0.0.1",7978);
 	}
+
+    private void clearScreen() {
+        Gdx.gl.glClearColor(0, 0, 0, 1);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+    }
 
 	@Override
 	public void render () {
+        clearScreen();
+        draw();
         update();
-        Gdx.gl.glClearColor(0, 0, 0, 1);
-		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
+    }
+
+    private void draw() {
+        shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
         shapeRenderer.identity();
         shapeRenderer.setColor(1,1,1,1);
         shapeRenderer.triangle(0,0,100,100,100,0);
-		shapeRenderer.end();
-	}
+        shapeRenderer.end();
+    }
 
     public void update(){
 
