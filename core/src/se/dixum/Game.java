@@ -4,6 +4,7 @@ import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.utils.Json;
 import se.dixum.connection.SocketConnection;
 
 import java.io.IOException;
@@ -17,18 +18,20 @@ public class Game extends ApplicationAdapter {
 	@Override
 	public void create () {
         shapeRenderer = new ShapeRenderer();
-        connection = new SocketConnection("192.168.1.31",7978);
+        connection = new SocketConnection("h104n37-far-a13.ias.bredband.telia.com",7978);
 
         //Inti here
-        player = new Player(0,0);
-
+		String data="";
         try{
-            System.out.println(connection.readSocket());
+            data = connection.readSocket();
             connection.sendSocket("Hej");
         }catch(IOException e){
             System.err.println("IO err: "+e.getMessage());
         }
-
+		Json json = new Json();
+		se.dixum.protocol.Position p = json.fromJson(se.dixum.protocol.Position.class,data);
+		System.out.println(p.pos_x);
+        player = new Player(0,0);
 
 
 	}
