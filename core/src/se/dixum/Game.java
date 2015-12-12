@@ -9,10 +9,11 @@ import se.dixum.connection.SocketConnection;
 public class Game extends ApplicationAdapter {
     ShapeRenderer shapeRenderer;
     SocketConnection connection;
-
+    Player player;
 	@Override
 	public void create () {
         shapeRenderer = new ShapeRenderer();
+        player = new Player(0,0);
         connection = new SocketConnection("127.0.0.1",7978);
 	}
 
@@ -29,14 +30,11 @@ public class Game extends ApplicationAdapter {
     }
 
     private void draw() {
-        shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
-        shapeRenderer.identity();
-        shapeRenderer.setColor(1,1,1,1);
-        shapeRenderer.triangle(0,0,100,100,100,0);
-        shapeRenderer.end();
+        player.draw(shapeRenderer);
     }
 
     public void update(){
 
+        connection.update();
     }
 }
