@@ -27,24 +27,28 @@ public class SocketConnection {
             System.err.println("Can't open socket");
             System.exit(1);
         }
-
-        try {
-            socket.getOutputStream().write("Hey".getBytes());
-            String res = "";
-            while (true) {
-                int n = socket.getInputStream().read();
-                System.out.println(n);
-                if (n == 0) {
-                    break;
-                }
-
-                res += Byte.toString(n);
-
-            }
-            System.out.println(res);
-
-        } catch (IOException e) {
-            System.err.println("Err");
-        }
     }
+
+
+    public void sendSocket(String content) throws IOException {
+        socket.getOutputStream().write(content.getBytes());
+    }
+
+    public String readSocket() throws IOException {
+
+        String res = "";
+
+        while (true) {
+            int n = socket.getInputStream().read();
+
+            if (n == 0) {
+                break;
+            }
+            res += (char)n;
+        }
+        System.out.println(res);
+
+
+        return res;
+   }
 }
