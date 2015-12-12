@@ -14,20 +14,32 @@ import java.io.IOException;
 public class SocketConnection {
 
     Socket socket;
-
-    public SocketConnection(String ip,int port){
+public void update(){
+    System.out.println("Socket update..");
+}
+    public SocketConnection(String ip,int port) {
         SocketHints socketHints = new SocketHints();
         try {
             socket = Gdx.net.newClientSocket(Net.Protocol.TCP, ip, port, socketHints);
-        }catch(GdxRuntimeException ex){
+        } catch (GdxRuntimeException ex) {
             System.err.println("Can't open socket");
+            System.exit(1);
         }
 
-        try {
-            System.out.print(socket.getInputStream().read());
-        } catch (IOException e) {
-            System.err.println("Err");
-        }
+            try {
+                socket.getOutputStream().write("Hey".getBytes());
+                String res = "";
+                while (true) {
+                    int n = socket.getInputStream().read();
+                    System.out.println(n);
+                    if (n==0) {break;}
+res +=Byte.toString((byte)(n));
 
+                }
+                System.out.println(res);
+
+            } catch (IOException e) {
+                System.err.println("Err");
+            }
     }
 }
