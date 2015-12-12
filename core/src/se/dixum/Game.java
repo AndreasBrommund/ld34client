@@ -6,6 +6,8 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import se.dixum.connection.SocketConnection;
 
+import java.io.IOException;
+
 public class Game extends ApplicationAdapter {
 
     private ShapeRenderer shapeRenderer;
@@ -19,6 +21,15 @@ public class Game extends ApplicationAdapter {
 
         //Inti here
         player = new Player(0,0);
+
+        try{
+            System.out.println(connection.readSocket());
+            connection.sendSocket("Hej");
+        }catch(IOException e){
+            System.err.println("IO err: "+e.getMessage());
+        }
+
+
 
 	}
 

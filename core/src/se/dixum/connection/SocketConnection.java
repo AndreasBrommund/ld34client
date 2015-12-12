@@ -41,14 +41,12 @@ public class SocketConnection {
         while (true) {
             int n = socket.getInputStream().read();
 
-            if (n == 0) {
+            if (n == (int)'\n') {
                 break;
             }
             res += (char)n;
         }
-        System.out.println(res);
-
-
         return res;
    }
+
 }
