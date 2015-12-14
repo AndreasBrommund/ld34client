@@ -28,7 +28,7 @@ public class Game extends ApplicationAdapter {
 	public void create () {
         shapeRenderer = new ShapeRenderer();
         connection = new SocketConnection("h104n37-far-a13.ias.bredband.telia.com",7978);
-        //connection = new SocketConnection("130.229.183.57",7978);
+        //connection = new SocketConnection("me",7978);
 
         //Inti here
         player = new Player(0,0,0);
