@@ -1,7 +1,8 @@
-package se.dixum;
+package se.dixum.sprite;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import se.dixum.Position;
 import se.dixum.protocol.PositionProtocol;
 
 /**

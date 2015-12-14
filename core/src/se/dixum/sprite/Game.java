@@ -1,4 +1,4 @@
-package se.dixum;
+package se.dixum.sprite;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
