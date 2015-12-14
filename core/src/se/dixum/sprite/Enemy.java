@@ -3,7 +3,7 @@ package se.dixum.sprite;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import se.dixum.Position;
-import se.dixum.protocol.PositionProtocol;
+
 
 /**
  * Created by andreasbrommund on 15-12-14.

@@ -3,7 +3,8 @@ package se.dixum.sprite;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import se.dixum.Position;
-import se.dixum.protocol.PositionProtocol;
+import se.dixum.protocol.EntityPackage;
+
 
 /**
  * Created by david on 15-12-12.
@@ -28,9 +29,10 @@ public class Player {
     public void update(){
     }
 
-    public void updateFromServer(PositionProtocol positionProtocol){
-        this.pos.setX(positionProtocol.pos_x);
-        this.pos.setY(positionProtocol.pos_y);
+    public void updateFromServer(EntityPackage entityPackage){
+        this.pos.setX(entityPackage.position.pos_x);
+        this.pos.setY(entityPackage.position.pos_y);
+        this.setAngle(entityPackage.angle);
     }
 
     public void draw(ShapeRenderer shapeRenderer) {

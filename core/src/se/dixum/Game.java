@@ -59,7 +59,7 @@ public class Game extends ApplicationAdapter {
     }
 
     public void updateFromServer(){
-        PositionPackage positionProtocol = null;
+        UpdatePackage updatePackage = null;
 
         byte[] send = new byte[1];
         send[0] = 0;
@@ -71,18 +71,18 @@ public class Game extends ApplicationAdapter {
         }
 
         try{
-            positionProtocol = connection.readPos();
+            updatePackage = connection.readUpdate();
             connection.sendSocket(send);
         }catch(IOException e){
             System.err.println("IO err: "+e.getMessage());
         }
 
-        player.updateFromServer(positionProtocol.player_pos);
+        player.updateFromServer(updatePackage.player);
 
         enemy = new ArrayList<Enemy>();
 
-        for (int i = 0; i < positionProtocol.other_pos.length;i++){
-            enemy.add(new Enemy(positionProtocol.other_pos[i].pos_x,positionProtocol.other_pos[i].pos_y,20));
+        for (EntityPackage ep : updatePackage.enemies){
+            enemy.add(new Enemy(ep.position.pos_x,ep.position.pos_x,ep.angle));
         }
     }
 }

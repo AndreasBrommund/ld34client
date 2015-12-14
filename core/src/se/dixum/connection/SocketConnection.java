@@ -6,8 +6,7 @@ import com.badlogic.gdx.net.Socket;
 import com.badlogic.gdx.net.SocketHints;
 import com.badlogic.gdx.utils.GdxRuntimeException;
 import com.badlogic.gdx.utils.Json;
-import se.dixum.protocol.PositionPackage;
-import se.dixum.protocol.PositionProtocol;
+import se.dixum.protocol.UpdatePackage;
 
 import java.io.IOException;
 
@@ -47,9 +46,9 @@ public class SocketConnection {
         return res;
     }
 
-    public PositionPackage readPos() throws IOException{
+    public UpdatePackage readUpdate() throws IOException{
         Json json = new Json();
-        return json.fromJson(PositionPackage.class,readSocket());
+        return json.fromJson(UpdatePackage.class,readSocket());
     }
 
 
