@@ -8,12 +8,14 @@ import se.dixum.connection.SocketConnection;
 import se.dixum.protocol.*;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class Game extends ApplicationAdapter {
 
     private ShapeRenderer shapeRenderer;
     private SocketConnection connection;
     private Player player;
+    private ArrayList<Enemy> enemy;
 
 	@Override
 	public void create () {
@@ -23,6 +25,10 @@ public class Game extends ApplicationAdapter {
         //Inti here
         player = new Player(100,100);
 
+        enemy = new ArrayList<Enemy>();
+
+        enemy.add(new Enemy(200, 200));
+        enemy.add(new Enemy(100, 150));
 
 	}
 
@@ -42,10 +48,18 @@ public class Game extends ApplicationAdapter {
 
     private void draw() {
         player.draw(shapeRenderer);
+        for (Enemy e:enemy) {
+            e.draw(shapeRenderer);
+        }
     }
 
     public void update(){
         player.update();
+
+        for (Enemy e:enemy) {
+            e.update();
+            e.setAngle(90);
+        }
     }
 
     public void updateFromServer(){
