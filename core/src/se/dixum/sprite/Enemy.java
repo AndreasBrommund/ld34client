@@ -35,7 +35,6 @@ public class Enemy {
     public void draw(ShapeRenderer shapeRenderer) {
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
 
-        System.out.println("X = "+pos.getX()+ " Y = "+ pos.getY());
         float x0 = -base*.5f;
         float y0 = -height*.5f;
         float x1 = 0;
