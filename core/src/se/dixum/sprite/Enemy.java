@@ -43,23 +43,4 @@ public class Enemy {
 
         shapeRenderer.end();
     }
-
-    public Position getPos() {
-        return pos;
-    }
-
-    public void setPos(Position pos){
-        this.pos = pos;
-    }
-
-    public void setAngle(float angle){
-        this.angle = angle;
-    }
-
-    public float getAngle(){
-        return this.angle;
-    }
-
-
-
 }
