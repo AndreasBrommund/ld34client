@@ -35,7 +35,6 @@ public class Player {
 
     public void draw(ShapeRenderer shapeRenderer) {
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
-        shapeRenderer.setColor(0, 1, 0, 1);
 
         System.out.println("X = "+pos.getX()+ " Y = "+ pos.getY());
         float x0 = -base*.5f;
@@ -49,7 +48,7 @@ public class Player {
         shapeRenderer.translate(pos.getX(), pos.getY(), 0);
         shapeRenderer.rotate(0, 0, 1, -90 + angle);
 
-        shapeRenderer.triangle(x0, y0, x1, y1, x2, y2, Color.RED, Color.YELLOW, Color.RED);
+        shapeRenderer.triangle(x0, y0, x1, y1, x2, y2, Color.TAN, Color.GREEN, Color.TAN);
 
         shapeRenderer.end();
     }
