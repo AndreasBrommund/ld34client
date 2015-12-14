@@ -1,4 +1,4 @@
-package se.dixum.sprite;
+package se.dixum;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
@@ -6,6 +6,8 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import se.dixum.connection.SocketConnection;
 import se.dixum.protocol.*;
+import se.dixum.sprite.Enemy;
+import se.dixum.sprite.Player;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -20,7 +22,8 @@ public class Game extends ApplicationAdapter {
 	@Override
 	public void create () {
         shapeRenderer = new ShapeRenderer();
-        connection = new SocketConnection("h104n37-far-a13.ias.bredband.telia.com",7978);
+        //connection = new SocketConnection("h104n37-far-a13.ias.bredband.telia.com",7978);
+        connection = new SocketConnection("130.229.183.57",7978);
 
         //Inti here
         player = new Player(100,100);
@@ -63,7 +66,7 @@ public class Game extends ApplicationAdapter {
     }
 
     public void updateFromServer(){
-        PositionProtocol positionProtocol = null;
+        PositionPackage positionProtocol = null;
         try{
             positionProtocol = connection.readPos();
             connection.sendSocket("Hej");
@@ -71,6 +74,12 @@ public class Game extends ApplicationAdapter {
             System.err.println("IO err: "+e.getMessage());
         }
 
-        player.updateFromServer(positionProtocol);
+        player.updateFromServer(positionProtocol.player_pos);
+
+        enemy = new ArrayList<Enemy>();
+
+        for (int i = 0; i < positionProtocol.other_pos.length;i++){
+            enemy.add(new Enemy(positionProtocol.other_pos[i].pos_x,positionProtocol.other_pos[i].pos_y));
+        }
     }
 }
