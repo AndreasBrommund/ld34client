@@ -28,8 +28,8 @@ public class SocketConnection {
         }
     }
 
-    public void sendSocket(String content) throws IOException {
-        socket.getOutputStream().write(content.getBytes());
+    public void sendSocket(byte[] send) throws IOException {
+        socket.getOutputStream().write(send);
     }
 
     public String readSocket() throws IOException {

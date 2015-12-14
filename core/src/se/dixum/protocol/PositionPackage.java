@@ -1,7 +1,5 @@
 package se.dixum.protocol;
 
-import se.dixum.Position;
-
 /**
  * Created by andreasbrommund on 15-12-14.
  */

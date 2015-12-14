@@ -2,6 +2,7 @@ package se.dixum;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import se.dixum.connection.SocketConnection;
@@ -22,8 +23,8 @@ public class Game extends ApplicationAdapter {
 	@Override
 	public void create () {
         shapeRenderer = new ShapeRenderer();
-        //connection = new SocketConnection("h104n37-far-a13.ias.bredband.telia.com",7978);
-        connection = new SocketConnection("130.229.183.57",7978);
+        connection = new SocketConnection("h104n37-far-a13.ias.bredband.telia.com",7978);
+        //connection = new SocketConnection("130.229.183.57",7978);
 
         //Inti here
         player = new Player(0,0,0);
@@ -59,9 +60,19 @@ public class Game extends ApplicationAdapter {
 
     public void updateFromServer(){
         PositionPackage positionProtocol = null;
+
+        byte[] send = new byte[1];
+        send[0] = 0;
+
+        if (Gdx.input.isKeyPressed(Input.Keys.LEFT)){
+            send[0] = 0x01;
+        }else if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)){
+            send[0] = 0x02;
+        }
+
         try{
             positionProtocol = connection.readPos();
-            connection.sendSocket("Hej");
+            connection.sendSocket(send);
         }catch(IOException e){
             System.err.println("IO err: "+e.getMessage());
         }
