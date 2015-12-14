@@ -9,6 +9,7 @@ import se.dixum.connection.SocketConnection;
 import se.dixum.protocol.*;
 import se.dixum.sprite.Bullet;
 import se.dixum.sprite.Enemy;
+import se.dixum.sprite.Explosion;
 import se.dixum.sprite.Player;
 
 import java.io.IOException;
@@ -21,6 +22,7 @@ public class Game extends ApplicationAdapter {
     private Player player;
     private ArrayList<Enemy> enemy;
     private ArrayList<Bullet> bullet;
+    private ArrayList<Explosion> explosions;
 
 	@Override
 	public void create () {
@@ -32,7 +34,9 @@ public class Game extends ApplicationAdapter {
         player = new Player(0,0,0);
         enemy = new ArrayList<Enemy>();
         bullet = new ArrayList<Bullet>();
+        explosions = new ArrayList<Explosion>();
 
+        explosions.add(new Explosion(100,100));
 	}
 
     private void clearScreen() {
@@ -59,10 +63,18 @@ public class Game extends ApplicationAdapter {
         for (Bullet b:bullet){
             b.draw(shapeRenderer);
         }
+
+        for (Explosion e:explosions){
+            e.draw(shapeRenderer);
+        }
     }
 
     public void update(){
         player.update();
+
+        for (Explosion e:explosions){
+            e.update();
+        }
     }
 
     public void updateFromServer(){
