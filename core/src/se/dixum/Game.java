@@ -36,7 +36,7 @@ public class Game extends ApplicationAdapter {
         bullet = new ArrayList<Bullet>();
         explosions = new ArrayList<Explosion>();
 
-        explosions.add(new Explosion(100,100));
+        explosions.add(new Explosion(300,300));
 	}
 
     private void clearScreen() {
@@ -54,11 +54,11 @@ public class Game extends ApplicationAdapter {
     }
 
     private void draw() {
-        player.draw(shapeRenderer);
 
         for (Enemy e:enemy) {
             e.draw(shapeRenderer);
         }
+
 
         for (Bullet b:bullet){
             b.draw(shapeRenderer);
@@ -67,6 +67,9 @@ public class Game extends ApplicationAdapter {
         for (Explosion e:explosions){
             e.draw(shapeRenderer);
         }
+
+        player.draw(shapeRenderer);
+
     }
 
     public void update(){

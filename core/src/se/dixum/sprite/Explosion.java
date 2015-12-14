@@ -26,11 +26,11 @@ public class Explosion{
         particles = new ArrayList<Particle>();
 
         for (int i = 0; i < 100;i++){
-            particles.add(new Particle(x,y, MathUtils.random(-0.5f,0.5f),MathUtils.random(-0.5f, 0.5f)));
+            particles.add(new Particle(x,y, MathUtils.random(-0.2f,0.2f),MathUtils.random(-0.2f, 0.2f)));
         }
 
-        explode = false;
-        endTime = System.currentTimeMillis()+1000;
+        explode = true;
+        endTime = System.currentTimeMillis()+2000;
     }
 
     public void draw(ShapeRenderer shapeRenderer){
