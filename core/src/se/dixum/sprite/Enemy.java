@@ -16,19 +16,12 @@ public class Enemy {
     private Position pos;
     private float angle;
 
-    public Enemy(float x, float y) {
+    public Enemy(float x, float y, float angle) {
         this.pos = new Position(x, y);
         base = 60;
-        angle = 0;
+        this.angle = angle;
         height = (float)(Math.sqrt(Math.pow(base,2)-Math.pow(base/2,2)));
 
-
-    }
-
-    public void update(){
-    }
-
-    public void updateFromServer(PositionProtocol positionProtocol){
 
     }
 

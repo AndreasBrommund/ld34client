@@ -26,12 +26,9 @@ public class Game extends ApplicationAdapter {
         connection = new SocketConnection("130.229.183.57",7978);
 
         //Inti here
-        player = new Player(100,100);
+        player = new Player(0,0,0);
 
         enemy = new ArrayList<Enemy>();
-
-        enemy.add(new Enemy(200, 200));
-        enemy.add(new Enemy(100, 150));
 
 	}
 
@@ -58,11 +55,6 @@ public class Game extends ApplicationAdapter {
 
     public void update(){
         player.update();
-
-        for (Enemy e:enemy) {
-            e.update();
-            e.setAngle(90);
-        }
     }
 
     public void updateFromServer(){
@@ -79,7 +71,7 @@ public class Game extends ApplicationAdapter {
         enemy = new ArrayList<Enemy>();
 
         for (int i = 0; i < positionProtocol.other_pos.length;i++){
-            enemy.add(new Enemy(positionProtocol.other_pos[i].pos_x,positionProtocol.other_pos[i].pos_y));
+            enemy.add(new Enemy(positionProtocol.other_pos[i].pos_x,positionProtocol.other_pos[i].pos_y,20));
         }
     }
 }
