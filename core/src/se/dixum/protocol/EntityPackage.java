@@ -7,4 +7,5 @@ public class EntityPackage {
     public PositionPackage position;
 
     public float angle;
+    public boolean Alive;
 }
