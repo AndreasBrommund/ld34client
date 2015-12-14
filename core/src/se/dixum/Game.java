@@ -105,6 +105,10 @@ public class Game extends ApplicationAdapter {
         }
 
         bullet = new ArrayList<Bullet>();
-        bullet.add(new Bullet(100,100,45));
+
+
+        for (EntityPackage ep : updatePackage.bullets){
+            bullet.add(new Bullet(ep.position.pos_x,ep.position.pos_y,ep.angle));
+        }
     }
 }

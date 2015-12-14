@@ -7,4 +7,5 @@ package se.dixum.protocol;
 public class UpdatePackage {
     public EntityPackage player;
     public EntityPackage[] enemies;
+    public EntityPackage [] bullets;
 }
