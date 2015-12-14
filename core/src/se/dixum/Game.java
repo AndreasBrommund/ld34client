@@ -82,7 +82,7 @@ public class Game extends ApplicationAdapter {
         enemy = new ArrayList<Enemy>();
 
         for (EntityPackage ep : updatePackage.enemies){
-            enemy.add(new Enemy(ep.position.pos_x,ep.position.pos_x,ep.angle));
+            enemy.add(new Enemy(ep.position.pos_x,ep.position.pos_y,ep.angle));
         }
     }
 }

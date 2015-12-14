@@ -19,9 +19,9 @@ public class Player {
 
     public Player(float x, float y, float angle) {
         this.pos = new Position(x, y);
-        base = 60;
+        base = 24;
         this.angle = angle;
-        height = (float)(Math.sqrt(Math.pow(base,2)-Math.pow(base/2,2)));
+        height = 38;
 
 
     }
@@ -69,7 +69,5 @@ public class Player {
     public float getAngle(){
         return this.angle;
     }
-
-
 
 }
