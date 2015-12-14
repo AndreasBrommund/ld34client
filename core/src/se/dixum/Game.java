@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import se.dixum.connection.SocketConnection;
 import se.dixum.protocol.*;
+import se.dixum.sprite.Bullet;
 import se.dixum.sprite.Enemy;
 import se.dixum.sprite.Player;
 
@@ -19,6 +20,7 @@ public class Game extends ApplicationAdapter {
     private SocketConnection connection;
     private Player player;
     private ArrayList<Enemy> enemy;
+    private ArrayList<Bullet> bullet;
 
 	@Override
 	public void create () {
@@ -28,8 +30,8 @@ public class Game extends ApplicationAdapter {
 
         //Inti here
         player = new Player(0,0,0);
-
         enemy = new ArrayList<Enemy>();
+        bullet = new ArrayList<Bullet>();
 
 	}
 
@@ -49,8 +51,13 @@ public class Game extends ApplicationAdapter {
 
     private void draw() {
         player.draw(shapeRenderer);
+
         for (Enemy e:enemy) {
             e.draw(shapeRenderer);
+        }
+
+        for (Bullet b:bullet){
+            b.draw(shapeRenderer);
         }
     }
 
@@ -84,5 +91,8 @@ public class Game extends ApplicationAdapter {
         for (EntityPackage ep : updatePackage.enemies){
             enemy.add(new Enemy(ep.position.pos_x,ep.position.pos_y,ep.angle));
         }
+
+        bullet = new ArrayList<Bullet>();
+        bullet.add(new Bullet(100,100,45));
     }
 }
