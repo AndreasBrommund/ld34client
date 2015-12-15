@@ -31,12 +31,10 @@ public class Game extends ApplicationAdapter {
         //connection = new SocketConnection("me",7978);
 
         //Inti here
-        player = new Player(0,0,0);
+        player = new Player(0,0,0,this);
         enemy = new ArrayList<Enemy>();
         bullet = new ArrayList<Bullet>();
         explosions = new ArrayList<Explosion>();
-
-        explosions.add(new Explosion(300,300));
 	}
 
     private void clearScreen() {
@@ -59,13 +57,12 @@ public class Game extends ApplicationAdapter {
             e.draw(shapeRenderer);
         }
 
+        for (Explosion e:explosions) {
+            e.draw(shapeRenderer);
+        }
 
         for (Bullet b:bullet){
             b.draw(shapeRenderer);
-        }
-
-        for (Explosion e:explosions){
-            e.draw(shapeRenderer);
         }
 
         player.draw(shapeRenderer);
@@ -73,11 +70,11 @@ public class Game extends ApplicationAdapter {
     }
 
     public void update(){
-        player.update();
 
-        for (Explosion e:explosions){
+        for (Explosion e:explosions) {
             e.update();
         }
+
     }
 
     public void updateFromServer(){
@@ -99,12 +96,19 @@ public class Game extends ApplicationAdapter {
             System.err.println("IO err: "+e.getMessage());
         }
 
-        player.updateFromServer(updatePackage.player);
+        if (player.updateFromServer(updatePackage.player)){
+            send[0] = 3;
+            try {
+                connection.sendSocket(send);
+            }catch (IOException ex){
+
+            }
+        }
 
         enemy = new ArrayList<Enemy>();
 
         for (EntityPackage ep : updatePackage.enemies){
-            enemy.add(new Enemy(ep.position.pos_x,ep.position.pos_y,ep.angle));
+            enemy.add(new Enemy(ep.position.pos_x,ep.position.pos_y,ep.angle,ep.Alive,this));
         }
 
         bullet = new ArrayList<Bullet>();
@@ -113,5 +117,9 @@ public class Game extends ApplicationAdapter {
         for (EntityPackage ep : updatePackage.bullets){
             bullet.add(new Bullet(ep.position.pos_x,ep.position.pos_y,ep.angle));
         }
+    }
+
+    public void spawnExplosion(float x,float y){
+        explosions.add(new Explosion(x,y));
     }
 }
