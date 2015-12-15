@@ -30,7 +30,7 @@ public class Explosion{
         }
 
         explode = true;
-        endTime = System.currentTimeMillis()+2000;
+        endTime = System.currentTimeMillis()+1000;
     }
 
     public void draw(ShapeRenderer shapeRenderer){
