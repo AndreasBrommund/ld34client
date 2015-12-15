@@ -120,6 +120,6 @@ public class Game extends ApplicationAdapter {
     }
 
     public void spawnExplosion(float x,float y){
-        explosions.add(new Explosion(x,y));
+       // explosions.add(new Explosion(x,y));
     }
 }
